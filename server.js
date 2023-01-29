@@ -1,5 +1,15 @@
 const arr = [1, 2, 3, 4, 5];
 let obj;
+const login = 'admin';
+const password = 'qwerty12345';
+const user = {
+	'name': 'Oleg',
+	'age': 45,
+}
+const users = [
+	'user1',
+	'user2',
+]
 
 export default {
 	'/Calc/': function () {
@@ -46,5 +56,19 @@ export default {
 		} else {
 			return 'date is not correct'
 		}
+	},
+	'/logPass/': function ({ post }) {
+		if (post.login === login && post.password === password) {
+			return 'welcome';
+		} else {
+			return 'invalid login or password';
+		}
+	},
+	'/user1/': function ({ get }) {
+		return user[get.key];
+	},
+	'/users/': function ({ get }) {
+		let res = users[get.key];
+		return res ? res : 'error';
 	}
 };
