@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "dependencies": {
+    "formidable": "^1.2.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "test-http-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tehnikDaniyar/test-http-server.git"
+  },
+  "author": "Danik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tehnikDaniyar/test-http-server/issues"
+  },
+  "homepage": "https://github.com/tehnikDaniyar/test-http-server#readme",
+  "description": ""
+}
