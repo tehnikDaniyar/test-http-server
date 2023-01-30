@@ -12,6 +12,9 @@ const users = [
 ]
 
 export default {
+	'/test/': function ({ post }) {
+		return `${post.test1}, ${post.test2}`;
+	},
 	'/Calc/': function () {
 		return 3 + 2;
 	},
