@@ -73,5 +73,9 @@ export default {
 	'/users/': function ({ get }) {
 		let res = users[get.key];
 		return res ? res : 'error';
+	},
+	'/them87_1/': function ({ post }) {
+		console.log(post.email);
+		return `${post.email} is resived`;
 	}
 };
