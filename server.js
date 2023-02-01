@@ -78,5 +78,8 @@ export default {
 	'/them87_1/': function ({ post }) {
 		console.log(post.email);
 		return `${post.email} is resived`;
+	},
+	'/them89/': function ({ post }) {
+		return post.test1;
 	}
 };

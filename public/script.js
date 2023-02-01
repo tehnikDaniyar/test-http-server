@@ -44,7 +44,7 @@ console.log('teeeest');
 	console.log(searchParams.getAll('num5'));
 })();
 
-//=====them88===============================================
+//=====them88==============================================
 ; (function () {
 	let paramString = 'test1=param1&test2=param2&test3=param3';
 	let parametrs = new URLSearchParams(paramString);
@@ -61,4 +61,31 @@ console.log('teeeest');
 	parametrs.set('test1', 'newParam');
 	console.log(parametrs.toString());
 
+})();
+
+//=====them89===============================================
+; (function () {
+	let form = document.querySelector('#them89');
+	let button = document.querySelector('#them89_1_button');
+	form.addEventListener('submit', function (event) {
+		event.preventDefault();
+		let formData = new FormData(form);
+		console.log([...formData]);
+		formData.set('test3', '789');
+		formData.delete('test1');
+		console.log([...formData]);
+
+		for (let values of formData.values()) {
+			console.log(values);
+		};
+
+		for (let key of formData.keys()) {
+			console.log(key);
+		};
+
+		for (let entry of formData.entries()) {
+			console.log(entry);
+		};
+
+	});
 })();
