@@ -144,15 +144,66 @@ console.log('teeeest');
 	});
 
 	//====them92_2=============
-	function make2(num, callback) {
+	function make2(num1, num2, callback) {
 		setTimeout(function () {
 			let arr = [1, 2, 3, 4, 5];
-			callback(arr[num]);
+			callback(arr[num1], arr[num2]);
 		}, 3000)
 	};
 
-	make2(3, function (elem) {
-		console.log(elem);
+	make2(0, 2, function (num1, num2) {
+		console.log(num1 + num2);
+	});
+
+	//====them92_3=============
+	function make3(index, callback) {
+		setTimeout(function () {
+			let arr = [1, 2, 3, 4, 5];
+			let err;
+
+			if (arr[index] === undefined) {
+				err = 'error, index is not found';
+			} else {
+				err = null;
+			}
+			callback(arr[index], err);
+		}, 3000)
+	};
+
+	make3(1, function (num, err) {
+		if (!err) {
+			console.log(num);
+		} else {
+			console.log(err);
+		}
+	});
+
+	//====them92_4=============
+	function loadImage(path, callback) {
+
+		let img = document.createElement('img');
+		img.src = path;
+		let err;
+
+		img.addEventListener('error', () => {
+			console.log('error');
+			err = 'image is not downloaded';
+			callback(img, err);
+		});
+
+		img.addEventListener('load', () => {
+			callback(img, err);
+		})
+	};
+
+	loadImage('https://i.pinimg.com/736x/6e/ba/1f/6eba1fcb161e0a89a60833d753dc29c5.jpg', (img, err) => {
+		console.log('callback working');
+		if (!err) {
+			document.body.append(img);
+			console.log('Cat is on the page');
+		} else {
+			console.log(err);
+		}
 	});
 
 })();
