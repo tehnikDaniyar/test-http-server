@@ -291,3 +291,49 @@ console.log('teeeest');
 
 
 })();
+
+//=====them93===============================================
+; (function () {
+	//=====them93_1=======================
+	let parent = document.querySelector('#them93_1_parent');
+	let them = '#them93_1_';
+
+	function getData(parent, them) {
+		setTimeout(() => {
+			let arr = [1, 2, 3, 4, 5]
+			showMessage(parent, them);
+			addItems(parent, them, arr);
+			showAmount(parent, them, arr);
+			showResult(parent, them, arr);
+		}, 5000);
+	};
+
+	function showMessage(parent, them) {
+		parent.querySelector(`${them}message`).textContent = 'Data is resived';
+	};
+
+	function addItems(parent, them, arr) {
+		let list = parent.querySelector(`${them}list`);
+		arr.forEach(elem => {
+			let item = document.createElement('li');
+			item.textContent = elem;
+			list.append(item);
+		});
+	}
+
+	function showAmount(parent, them, arr) {
+		parent.querySelector(`${them}amount`).textContent = arr.length;
+	};
+
+	function showResult(parent, them, arr) {
+		parent.querySelector(`${them}result`).textContent =
+			arr.reduce((summ, num) => summ + num);
+	}
+
+	getData(parent, them);
+
+
+
+
+
+})();
