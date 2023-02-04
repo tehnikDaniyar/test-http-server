@@ -332,6 +332,46 @@ console.log('teeeest');
 
 	getData(parent, them);
 
+	//=====them93_2=======================
+	let parent2 = document.querySelector('#them93_2_parent');
+	let them2 = '#them93_2_';
+	let subsribers = {
+	};
+
+	//=======functions emit and on==========
+	function on(name, callback) {
+		if (!subsribers[name]) {
+			subsribers[name] = []
+		};
+		subsribers[name].push(callback);
+	};
+
+	function emit(name, data) {
+		if (subsribers[name]) {
+			for (let callback of subsribers[name]) {
+				callback(parent2, them2, data);
+			}
+		}
+
+	}
+
+	function asyncData() {
+		setTimeout(function () {
+			let arr = [1, 2, 3, 4, 5]
+			emit('loaded', arr);
+		}, 5000);
+	};
+
+	on('loaded', showMessage);
+	on('loaded', addItems);
+	on('loaded', showAmount);
+	on('loaded', showResult);
+
+
+	asyncData();
+
+
+
 
 
 
