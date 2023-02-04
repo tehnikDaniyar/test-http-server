@@ -308,8 +308,9 @@ console.log('teeeest');
 		}, 5000);
 	};
 
-	function showMessage(parent, them) {
-		parent.querySelector(`${them}message`).textContent = 'Data is resived';
+	function showMessage(parent, them, data) {
+		parent.querySelector(`${them}message`).textContent =
+			data ? `${data}` : 'Data is resived';
 	};
 
 	function addItems(parent, them, arr) {
@@ -346,10 +347,10 @@ console.log('teeeest');
 		subsribers[name].push(callback);
 	};
 
-	function emit(name, data) {
+	function emit(name, parent, them, data) {
 		if (subsribers[name]) {
 			for (let callback of subsribers[name]) {
-				callback(parent2, them2, data);
+				callback(parent, them, data);
 			}
 		}
 
@@ -358,7 +359,7 @@ console.log('teeeest');
 	function asyncData() {
 		setTimeout(function () {
 			let arr = [1, 2, 3, 4, 5]
-			emit('loaded', arr);
+			emit('loaded', parent2, them2, arr);
 		}, 5000);
 	};
 
@@ -367,13 +368,25 @@ console.log('teeeest');
 	on('loaded', showAmount);
 	on('loaded', showResult);
 
-
 	asyncData();
 
+	//====them93_3=================
+	let parent3 = document.querySelector('#them93_3_parent')
+	let them3 = '#them93_3_'
+	function nextHour() {
+		let date = new Date();
+		let hour = date.getHours();
+		setTimeout(() => {
+			date.getHours() === hour ? null : emit('nextHour', parent3, them3, date.getHours());
+		}, 1000);
+	};
 
+	on('nextHour', showMessage);
+	nextHour()
 
 
 
 
 
 })();
+
