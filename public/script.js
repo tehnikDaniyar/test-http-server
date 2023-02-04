@@ -206,4 +206,88 @@ console.log('teeeest');
 		}
 	});
 
+	//====them92_5===callback hell==========
+	let path1 = 'https://cs.amdm.ru/images/artist/120x120/11191.jpg';
+	let path2 = 'https://cs.amdm.ru/images/artist/120x120/11191.jpg';
+	let path3 = 'https://cs.amdm.ru/images/artist/120x120/11191.jpg';
+
+	loadImage(path1, (img, err) => {
+		if (!err) {
+			document.body.append(img);
+		} else {
+			console.log(err);
+		};
+		loadImage(path2, (img, err) => {
+			if (!err) {
+				document.body.append(img);
+			} else {
+				console.log(err);
+			};
+			loadImage(path3, (img, err) => {
+				if (!err) {
+					document.body.append(img);
+				} else {
+					console.log(err);
+				};
+				loadImage(path3, (img, err) => {
+					if (!err) {
+						document.body.append(img);
+					} else {
+						console.log(err);
+					};
+					loadImage(path3, (img, err) => {
+						if (!err) {
+							document.body.append(img);
+						} else {
+							console.log(err);
+						};
+						loadImage(path3, (img, err) => {
+							if (!err) {
+								document.body.append(img);
+							} else {
+								console.log(err);
+							};
+							loadImage(path3, (img, err) => {
+								if (!err) {
+									document.body.append(img);
+								} else {
+									console.log(err);
+								};
+								loadImage(path3, (img, err) => {
+									if (!err) {
+										document.body.append(img);
+									} else {
+										console.log(err);
+									};
+									loadImage(path3, (img, err) => {
+										if (!err) {
+											document.body.append(img);
+										} else {
+											console.log(err);
+										};
+										loadImage(path3, (img, err) => {
+											if (!err) {
+												document.body.append(img);
+											} else {
+												console.log(err);
+											};
+											loadImage(path3, (img, err) => {
+												if (!err) {
+													document.body.append(img);
+												} else {
+													console.log(err);
+												};
+											})
+										})
+									})
+								})
+							})
+						})
+					})
+				})
+			})
+		})
+	})
+
+
 })();
