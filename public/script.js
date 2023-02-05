@@ -372,19 +372,84 @@ console.log('teeeest');
 
 	//====them93_3=================
 	let parent3 = document.querySelector('#them93_3_parent')
-	let them3 = '#them93_3_'
+	let button = parent3.querySelector('#them93_4_button');
+	let buttonOnSchedule = parent3.querySelector('#them93_5_button'); //schedule
+	let them3 = '#them93_3_';
+
 	function nextHour() {
 		let date = new Date();
 		let hour = date.getHours();
-		setTimeout(() => {
+		setInterval(() => {
+			let date = new Date();
 			date.getHours() === hour ? null : emit('nextHour', parent3, them3, date.getHours());
+		}, 10000);
+	};
+
+	//========test==================================================
+
+	function nextSecond() {
+		let date = new Date();
+		let second = date.getSeconds();
+		setInterval(function nextSecond() {
+			let date = new Date();
+			date.getSeconds() === second ? null : emit('nextSecond', parent3, them3, date.getSeconds());
 		}, 1000);
 	};
 
-	on('nextHour', showMessage);
+
+	on('nextSecond', function (parent, them, data) {
+		let timer = parent.querySelector(`${them}timer`)
+		timer.textContent = data;
+	});
+
+	nextSecond();
+
+	//==============================================================	
+
+
+
+
+	//===them93_4==================
+	button.addEventListener('click', (event) => {
+		console.log(subsribers);
+		event.preventDefault();
+		on('nextHour', function () {
+			alert('next hour')
+		});
+	});
+
+	//===them93_5==================
+	buttonOnSchedule.addEventListener('click', (event) => {
+		console.log(subsribers);
+		event.preventDefault();
+		on('nextHour', function (parent, them, data) {
+			let p = document.createElement('p');
+			switch (true) {
+				case data === 8:
+					p.textContent = 'breakfast';
+				case data === 12:
+					p.textContent = 'lunch';
+				case data === 18:
+					p.textContent = 'dinner';
+				default: p.textContent = 'working';
+			};
+			parent.append(p);
+		});
+		console.log(subsribers);
+	})
+
+	//===them93_6==================
+	function nextMinute() {
+		let date = new Date;
+		let minute = date.getMinutes();
+		setTimeout(() => {
+			if (!date.getMinutes() === minute) {
+				emit('nextMinute', parent3, them3, `${date.getHours()} ${date.getMinutes()}`);
+			}
+		}, 1000)
+	};
+
 	nextHour()
-
-
 
 
 
