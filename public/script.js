@@ -381,7 +381,10 @@ console.log('teeeest');
 		let hour = date.getHours();
 		setInterval(() => {
 			let date = new Date();
-			date.getHours() === hour ? null : emit('nextHour', parent3, them3, date.getHours());
+			if (!date.getHours() === hour) {
+				emit('nextHour', parent3, them3, date.getHours());
+				hour = date.getHours();
+			};
 		}, 10000);
 	};
 
@@ -440,18 +443,31 @@ console.log('teeeest');
 
 	//===them93_6==================
 	function nextMinute() {
-		let date = new Date;
+		let date = new Date();
 		let minute = date.getMinutes();
-		setTimeout(() => {
+		console.log(minute);
+		setInterval(() => {
+			let date = new Date();
+			console.log(date.getMinutes());
 			if (!date.getMinutes() === minute) {
-				emit('nextMinute', parent3, them3, `${date.getHours()} ${date.getMinutes()}`);
-			}
-		}, 1000)
+				console.log('qqqqqqqqqqqqqqq');
+				emit('nextMinute', parent3, them3, date.getMinutes());
+				minute = date.getHours();
+			};
+		}, 10000);
 	};
 
-	nextHour()
+	nextHour();
+	nextMinute();
 
+	//===them93_7==================
 
+	on('nextMinute', function (_, _, data) {
+		console.log(`${data}`);
+		// if (data % 15 === 0 || data === 0) {
+		// 	alert('make pause 15 minutes');
+		// };
+	});
 
 })();
 
