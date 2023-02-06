@@ -353,7 +353,6 @@ console.log('teeeest');
 				callback(parent, them, data);
 			}
 		}
-
 	}
 
 	function asyncData() {
@@ -453,6 +452,64 @@ console.log('teeeest');
 		};
 	});
 
+	//===them93_8======reminder============
+	//=====elements===============
+	const reminder = document.querySelector('.reminder');
+
+	//=====functions==============
+	function createReminder(parent) {
+		let remind = document.createElement('div');
+		let infoTime = document.createElement('p');
+		let infoTask = document.createElement('p');
+		let buttonDelete = document.createElement('a');
+
+		infoTime.textContent = 'time';
+		infoTask.textContent = 'task';
+		buttonDelete.textContent = 'delete remind';
+		buttonDelete.href = '#';
+
+		remind.classList.add(`${parent.getAttribute('class')}__remind`);
+		infoTime.classList.add(`${parent.getAttribute('class')}__time`);
+		infoTask.classList.add(`${parent.getAttribute('class')}__task`);
+		buttonDelete.classList.add(`${parent.getAttribute('class')}__button-delete`);
+
+		remind.append(infoTime);
+		remind.append(infoTask);
+		remind.append(buttonDelete);
+
+		parent.append(remind);
+	}
+
+	function editReminder(event) {
+		let item = event.target;
+		let input = document.createElement('input');
+
+		input.value = item.textContent;
+		item.textContent = '';
+		item.append(input);
+
+		input.addEventListener('blur', function () {
+			item.innerHTML = input.value;
+		});
+	};
+
+
+	reminder.addEventListener('click', function (event) {
+		if (event.target.getAttribute('class') === 'reminder__button-create') {
+			event.preventDefault();
+			createReminder(this);
+		};
+
+		if (event.target.getAttribute('class') === 'reminder__button-delete') {
+			event.preventDefault();
+			event.target.closest('div').remove();
+		};
+
+		if (event.target.tagName === 'P') {
+			editReminder(event);
+		};
+
+	});
 
 })();
 
