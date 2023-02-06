@@ -404,7 +404,7 @@ console.log('teeeest');
 			console.log(date.getMinutes());
 			if (date.getMinutes() !== minute) {
 				emit('nextMinute', parent3, them3, { hours: date.getHours(), minutes: date.getMinutes() });
-				minute = date.getHours();
+				minute = date.getMinutes();
 			};
 		}, 10000);
 	}();
@@ -493,21 +493,56 @@ console.log('teeeest');
 		});
 	};
 
+	function addButtonActive(parent, block) {
+		let button = document.createElement('a');
+		button.textContent = 'activate';
+		button.href = '#';
+		button.classList.add(`${parent.getAttribute('class')}__button-active`)
+		block.append(button);
+		block.classList.add('active');
+	}
+
+	function subscribe(block, time, task) {
+		on('nextMinute', function (__, __, data) {
+			if (+time.replace(/(\d{2}):(\d{2})/g, '$1') === data.hours &&
+				+time.replace(/(\d{2}):(\d{2})/g, '$2') === data.minutes) {
+				console.log(`${task}`);
+				block.classList.remove('working');
+				block.querySelector('.reminder__button-active').textContent = 'active';
+			}
+		})
+	}
 
 	reminder.addEventListener('click', function (event) {
+		//-----create---------------
 		if (event.target.getAttribute('class') === 'reminder__button-create') {
 			event.preventDefault();
 			createReminder(this);
 		};
 
+		//-----delete---------------
 		if (event.target.getAttribute('class') === 'reminder__button-delete') {
 			event.preventDefault();
 			event.target.closest('div').remove();
 		};
 
+		//------edit-----------------
 		if (event.target.tagName === 'P') {
 			editReminder(event);
+			let block = event.target.closest('div');
+			if (!block.classList.contains('active')) {
+				addButtonActive(reminder, block);
+			};
 		};
+
+		//------subscribe------------
+		if (event.target.classList.contains('reminder__button-active')) {
+			event.preventDefault();
+			let block = event.target.closest('div');
+			block.classList.add('working');
+			subscribe(block, block.querySelector('.reminder__time').textContent, block.querySelector('.reminder__task').textContent);
+			event.target.textContent = 'working';
+		}
 
 	});
 
