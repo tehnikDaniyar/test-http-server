@@ -376,41 +376,45 @@ console.log('teeeest');
 	let buttonOnSchedule = parent3.querySelector('#them93_5_button'); //schedule
 	let them3 = '#them93_3_';
 
-	function nextHour() {
+	//====async functions==================
+	+function nextHour() {
 		let date = new Date();
 		let hour = date.getHours();
 		setInterval(() => {
 			let date = new Date();
-			if (!date.getHours() === hour) {
+			if (date.getHours() !== hour) {
 				emit('nextHour', parent3, them3, date.getHours());
 				hour = date.getHours();
 			};
 		}, 10000);
-	};
-
-	//========test==================================================
-
-	function nextSecond() {
+	}();
+	+function nextSecond() {
 		let date = new Date();
 		let second = date.getSeconds();
 		setInterval(function nextSecond() {
 			let date = new Date();
 			date.getSeconds() === second ? null : emit('nextSecond', parent3, them3, date.getSeconds());
 		}, 1000);
-	};
+	}();
+	+ function nextMinute() {
+		let date = new Date();
+		let minute = date.getMinutes();
+		console.log(minute);
+		setInterval(() => {
+			let date = new Date();
+			console.log(date.getMinutes());
+			if (date.getMinutes() !== minute) {
+				emit('nextMinute', parent3, them3, { hours: date.getHours(), minutes: date.getMinutes() });
+				minute = date.getHours();
+			};
+		}, 10000);
+	}();
 
-
+	//========timer of seconds==========================
 	on('nextSecond', function (parent, them, data) {
 		let timer = parent.querySelector(`${them}timer`)
 		timer.textContent = data;
 	});
-
-	nextSecond();
-
-	//==============================================================	
-
-
-
 
 	//===them93_4==================
 	button.addEventListener('click', (event) => {
@@ -441,33 +445,14 @@ console.log('teeeest');
 		console.log(subsribers);
 	})
 
-	//===them93_6==================
-	function nextMinute() {
-		let date = new Date();
-		let minute = date.getMinutes();
-		console.log(minute);
-		setInterval(() => {
-			let date = new Date();
-			console.log(date.getMinutes());
-			if (!date.getMinutes() === minute) {
-				console.log('qqqqqqqqqqqqqqq');
-				emit('nextMinute', parent3, them3, date.getMinutes());
-				minute = date.getHours();
-			};
-		}, 10000);
-	};
-
-	nextHour();
-	nextMinute();
-
 	//===them93_7==================
-
 	on('nextMinute', function (_, _, data) {
-		console.log(`${data}`);
-		// if (data % 15 === 0 || data === 0) {
-		// 	alert('make pause 15 minutes');
-		// };
+		// console.log(data["minutes"], data["hours"], data.minutes);
+		if (data.minutes % 15 === 0 || data.minutes === 0) {
+			alert('make pause 15 minutes');
+		};
 	});
+
 
 })();
 
