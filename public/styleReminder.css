@@ -1,0 +1,60 @@
+/*=========reminder=============*/
+.reminder a {
+	display: inline-block;
+	padding: 5px 10px;
+	border: 1px solid black;
+	background-color: yellow;
+	text-decoration: none;
+	color: black;
+	text-transform: uppercase;
+	font-weight: bold;
+
+}
+
+.reminder {
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	border: 3px solid black;
+	padding: 40px;
+	background-color: rgb(106, 106, 199);
+}
+
+.reminder__buttons {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+
+/*=======remind===========*/
+.reminder__remind {
+	width: 70%;
+	padding: 20px;
+	background-color: rgb(94, 160, 94);
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.reminder__time,
+.reminder__task,
+.reminder__time input,
+.reminder__task input {
+	color: #000;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+
+.reminder__time {
+	padding: 15px 20px;
+	background-color: #fff;
+
+}
+
+.reminder__task {
+	padding: 15px 20px;
+	background-color: #fff;
+}
